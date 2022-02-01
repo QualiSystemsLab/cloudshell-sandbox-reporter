@@ -1,14 +1,15 @@
-from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
-from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext
-from data_model import *  # run 'shellfoundry generate' to generate data model classes
-from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
-from cloudshell.shell.core.session.logging_session import LoggingSessionContext
-from cloudshell.helpers.sandbox_reporter.reporter import SandboxReporter
 import time
 
+from data_model import *  # run 'shellfoundry generate' to generate data model classes
 
-class ReporterTesterDriver (ResourceDriverInterface):
+from cloudshell.helpers.sandbox_reporter.reporter import SandboxReporter
+from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext
+from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
+from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
+from cloudshell.shell.core.session.logging_session import LoggingSessionContext
 
+
+class ReporterTesterDriver(ResourceDriverInterface):
     def __init__(self):
         """
         ctor must be without arguments, it is created with reflection at run time

@@ -5,15 +5,15 @@ import time
 
 import constants
 import pytest
+
 from cloudshell.helpers.sandbox_reporter.reporter import SandboxReporter
 
 
 @pytest.fixture(scope="session")
 def sandbox_id(admin_session, empty_blueprint) -> str:
-    start_response = admin_session.CreateImmediateTopologyReservation(reservationName="Reporter Test Regression",
-                                                                      owner="admin",
-                                                                      durationInMinutes=15,
-                                                                      topologyFullPath=empty_blueprint)
+    start_response = admin_session.CreateImmediateTopologyReservation(
+        reservationName="Reporter Test Regression", owner="admin", durationInMinutes=15, topologyFullPath=empty_blueprint
+    )
     print("Started sandbox")
     sandbox_id = start_response.Reservation.Id
     time.sleep(5)

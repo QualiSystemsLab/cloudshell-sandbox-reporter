@@ -11,7 +11,6 @@ from driver import ReporterTesterDriver
 
 
 class TestReporterTesterDriver(unittest.TestCase):
-
     def setUp(self):
         pass
 
@@ -22,6 +21,7 @@ class TestReporterTesterDriver(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     sys.exit(unittest.main())

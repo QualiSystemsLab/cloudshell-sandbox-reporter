@@ -4,8 +4,8 @@ This class is a "logger adapter" that uses duck typing of standard logger signat
 """
 import logging
 
-from cloudshell.helpers.sandbox_reporter.sandbox_console import SandboxConsole
 from cloudshell.api.cloudshell_api import CloudShellAPISession
+from cloudshell.helpers.sandbox_reporter.sandbox_console import SandboxConsole
 
 
 class SandboxReporter:

@@ -15,11 +15,13 @@ def element_wrap(text: str, color="white", element="span", italicized=False):
 
 
 def anchor_wrap(url: str, text: str):
-    return (f'<a href={url} '
-            f'style="text-decoration: underline" '
-            f'target="_blank" '
-            f'rel="noopener noreferrer">'
-            f'{text}</a>')
+    return (
+        f"<a href={url} "
+        f'style="text-decoration: underline" '
+        f'target="_blank" '
+        f'rel="noopener noreferrer">'
+        f"{text}</a>"
+    )
 
 
 def success_wrap(text: str, element="span", italicized=False):
