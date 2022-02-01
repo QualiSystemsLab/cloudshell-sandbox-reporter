@@ -145,5 +145,4 @@ class ReporterTesterDriver (ResourceDriverInterface):
 ```
 
 ### License
-
 Free Software: MIT License
