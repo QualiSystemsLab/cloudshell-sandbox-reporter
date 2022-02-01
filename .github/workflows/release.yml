@@ -1,0 +1,83 @@
+# setup tools guide used as base template - https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+# wait on check action used to wait for tests to finish - https://github.com/marketplace/actions/wait-on-check
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Wait for lint and tests to succeed
+      uses: lewagon/wait-on-check-action@v0.2
+      with:
+        ref: ${{ github.ref }}
+        check-name: 'lint-test'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10
+    
+    - name: Checkout Code
+      uses: actions/checkout@master
+    
+    - name: Validate tag version - compare version.txt to tag
+      run: |
+        version=$(cat ./version.txt)              
+        tag=${GITHUB_REF/refs\/tags\//}           
+        tag="${tag:1}"                            # remove the 'v' prefix from the tag that triggered this action
+        echo $version
+        echo $tag
+        if [ "$tag" == "$version" ]
+        then
+          echo "Tag and version are equal"
+        else
+          echo "Error: Tag and version are not equal, cannot create a release"
+          exit 1
+        fi
+
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    
+    - name: Install pypa/build
+      run: >-
+        python -m
+        pip install
+        build
+        --user
+    
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        python -m
+        build
+        --sdist
+        --wheel
+        --outdir dist/
+        .
+
+    - name: Publish distribution 📦 to Test PyPI
+      if: startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.TEST_PYPI_TOKEN }}
+        repository_url: https://test.pypi.org/legacy/
+        skip_existing: true  # skip duplicate uploads to test pypi
+
+    - name: Publish distribution 📦 to Real PyPI
+      if: startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        
+      
+    - name: Create Github Release and Upload Artifacts
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
