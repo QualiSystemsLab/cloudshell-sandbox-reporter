@@ -3,7 +3,6 @@ Test Against live sandbox
 """
 import time
 
-import constants
 import pytest
 
 from cloudshell.helpers.sandbox_reporter.reporter import SandboxReporter
@@ -35,8 +34,8 @@ def test_reporter(admin_session, sandbox_id, logger):
     time.sleep(2)
     reporter.console.anchor_tag_print("https://google.com", "I'm a hyperlink. Click me!")
     reporter.critical("reporter CRITICAL message")
-    # time.sleep(2)
-    # reporter.exception("reporter EXCEPTION message")
+    time.sleep(2)
+    reporter.exception("reporter EXCEPTION message")
     time.sleep(2)
     reporter.success("reporter SUCCESS message")
     time.sleep(10)

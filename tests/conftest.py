@@ -1,6 +1,5 @@
 import logging
 import sys
-import time
 
 import pytest
 from constants import *

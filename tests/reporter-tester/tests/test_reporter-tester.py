@@ -7,8 +7,6 @@ Tests for `ReporterTesterDriver`
 
 import unittest
 
-from driver import ReporterTesterDriver
-
 
 class TestReporterTesterDriver(unittest.TestCase):
     def setUp(self):

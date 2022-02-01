@@ -18,9 +18,9 @@ class SandboxReporter:
     @property
     def logger(self):
         """
-        the underlying logger is always here to use directly
+        The underlying logger is always here to use directly
         Can be passed along to lower level functions to avoid unexpected console prints
-        (unless you are debugging and want everything dumped directly to console)
+        (Unless you are debugging and want everything dumped directly to console)
         """
         return self._logger
 

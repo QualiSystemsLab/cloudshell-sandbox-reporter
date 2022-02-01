@@ -11,10 +11,12 @@ repos:
       - id: black
         language_version: python3.7
         args: [ --line-length=127 ]
+        exclude: reporter-tester/
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.3
     hooks:
       - id: flake8
+        exclude: reporter-tester/
         additional_dependencies: [
             flake8-docstrings,
             flake8-builtins,
@@ -31,6 +33,7 @@ repos:
   - repo: local
     hooks:
       - id: pylint
+        exclude: reporter-tester/
         name: pylint
         entry: pylint
         language: system
@@ -39,6 +42,6 @@ repos:
             --max-line-length=127,
             --max-public-methods=32,
             --max-args=13,
-            '--disable=too-few-public-methods,logging-fstring-interpolation,too-many-instance-attributes,no-else-return,too-many-locals,no-self-use,duplicate-code,broad-except,logging-not-lazy,unspecified-encoding, unused-wildcard-import,missing-function-docstring,missing-module-docstring,import-error,wildcard-import,invalid-name,redefined-outer-name,no-name-in-module, arguments-differ',
+            '--disable=too-few-public-methods,logging-fstring-interpolation,too-many-instance-attributes,no-else-return,too-many-locals,no-self-use,duplicate-code,broad-except,logging-not-lazy,unspecified-encoding, unused-wildcard-import,missing-function-docstring,missing-module-docstring,import-error,wildcard-import,invalid-name,redefined-outer-name,no-name-in-module, arguments-differ, missing-class-docstring',
             '--good-names=ip,rc,eval'
         ]
