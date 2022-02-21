@@ -16,7 +16,7 @@ You just instantiate the reporter with your logger instance, and log messages wi
 
 ### Sample Output
  
-![Sandbox Console Output](images/colored_console_output.png)
+![Sandbox Console Output](https://raw.githubusercontent.com/QualiSystemsLab/cloudshell-sandbox-reporter/master/images/colored_console_output.png)
 
 ### Installation
 
