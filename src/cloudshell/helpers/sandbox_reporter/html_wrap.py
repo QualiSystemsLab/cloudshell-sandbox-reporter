@@ -9,7 +9,7 @@ DEBUG_PURPLE = "#BA68C8"
 
 
 def element_wrap(text: str, color="white", element="span", italicized=False):
-    """ Wrap in target element, color, and font style """
+    """Wrap in target element, color, and font style"""
     font_style = "italic" if italicized else "normal"
     return f"<{element} style='color: {color}; font-style: {font_style};'>{text}</{element}>"
 
