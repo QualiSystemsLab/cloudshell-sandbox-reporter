@@ -5,18 +5,18 @@ repos:
       - id: isort
         language_version: python3.7
         args: [ --line-length=127 ]
-  - repo: https://github.com/python/black
-    rev: 20.8b1
+  - repo: https://github.com/psf/black
+    rev: 22.8.0
     hooks:
       - id: black
         language_version: python3.7
         args: [ --line-length=127 ]
-        exclude: reporter-tester/
+        exclude: tests/
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.3
     hooks:
       - id: flake8
-        exclude: reporter-tester/
+        exclude: tests/
         additional_dependencies: [
             flake8-docstrings,
             flake8-builtins,
@@ -33,7 +33,7 @@ repos:
   - repo: local
     hooks:
       - id: pylint
-        exclude: reporter-tester/
+        exclude: tests/
         name: pylint
         entry: pylint
         language: system
