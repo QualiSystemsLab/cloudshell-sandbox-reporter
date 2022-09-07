@@ -2,18 +2,26 @@
 In addition to logging, "SandboxReporter" methods will also handle sending formatted html messages to sandbox console
 This class is a "logger adapter" that uses duck typing of standard logger signature
 """
+import inspect
 import logging
 
 from cloudshell.api.cloudshell_api import CloudShellAPISession
 from cloudshell.helpers.sandbox_reporter.sandbox_console import SandboxConsole
 
+DEFAULT_STACK_CORRECTION = 3
+
 
 class SandboxReporter:
-    def __init__(self, api: CloudShellAPISession, reservation_id: str, logger: logging.Logger):
+    def __init__(self, api: CloudShellAPISession, reservation_id: str, logger: logging.Logger, stack_correction=0):
+        """
+        Stack correction is when you put sandbox reporter into a wrapper and want the parent function logged
+        stack corrections will take effect only for python 3.8 and higher
+        """
         self._api = api
         self._reservation_id = reservation_id
         self._logger = logger
         self._console = SandboxConsole(api, reservation_id)
+        self._stack_correction = stack_correction
 
     @property
     def logger(self):
@@ -39,8 +47,16 @@ class SandboxReporter:
         return self.logger.isEnabledFor(level)
 
     def _log(self, level, msg, *args, **kwargs):
-        """ Delegate a log call to the underlying logger """
-        self.logger.log(level, msg, *args, **kwargs)
+        """
+        Delegate a log call to the underlying logger
+        Adjust stack level for newer python versions, 3.8 and higher
+        """
+        sig = inspect.getfullargspec(self.logger._log)  # pylint: disable=protected-access
+        if "stacklevel" in sig.args:  # Python 3.8 and above
+            total_stacks = DEFAULT_STACK_CORRECTION + self._stack_correction
+            self.logger.log(level, msg, *args, stacklevel=total_stacks, **kwargs)
+        else:
+            self.logger.log(level, msg, *args, **kwargs)
 
     def debug(self, msg, *args, console_print=True, console_prefix=True, **kwargs):
         """

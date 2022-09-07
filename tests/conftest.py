@@ -7,6 +7,8 @@ from env_settings import *
 
 from cloudshell.api.cloudshell_api import CloudShellAPISession
 
+DEFAULT_FORMAT = "%(asctime)s [%(levelname)s]: %(name)s %(module)s - %(funcName)-20s %(message)s"
+
 
 @pytest.fixture(scope="session")
 def admin_session() -> CloudShellAPISession:
@@ -23,7 +25,7 @@ def logger() -> logging.Logger:
     logger.setLevel(logging.DEBUG)
     handler = logging.StreamHandler(sys.stdout)
     handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(DEFAULT_FORMAT)
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
