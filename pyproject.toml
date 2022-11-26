@@ -1,3 +1,43 @@
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.pylint]
+max-line-length=127
+max-public-methods=32
+max-args=13
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = '''
+        too-few-public-methods,
+        logging-fstring-interpolation,
+        too-many-instance-attributes,
+        no-else-return,
+        too-many-locals,
+        duplicate-code,
+        broad-except,
+        logging-not-lazy,
+        unspecified-encoding,
+        unused-wildcard-import,
+        missing-function-docstring,
+        missing-module-docstring,
+        missing-class-docstring,
+        import-error,
+        wildcard-import,
+        invalid-name,
+        redefined-outer-name,
+        no-name-in-module,
+        raise-missing-from,
+        arguments-differ,
+'''
+
+[tool.pylint.DESIGN]
+max-args = 13
+max-attributes = 7
+max-bool-expr = 5
+
+[tool.isort]
+line_length=127
+
+[tool.black]
+line-length=127

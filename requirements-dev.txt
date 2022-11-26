@@ -1,5 +1,6 @@
+black
 pytest
-python-dotenv
-flake8
 pylint
-pre-commit
+flake8
+python-dotenv
+tox

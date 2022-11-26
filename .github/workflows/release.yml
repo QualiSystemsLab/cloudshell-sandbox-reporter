@@ -73,8 +73,15 @@ jobs:
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
+    
+    - name: Build Changelog 📝
+      id: github_release
+      uses: mikepenz/release-changelog-builder-action@v3
+      with:
+        configuration: "changelog_config.json"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-      
     - name: Create Github Release and Upload Artifacts
       uses: softprops/action-gh-release@v1
       with:
