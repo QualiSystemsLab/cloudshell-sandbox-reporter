@@ -1,6 +1,7 @@
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python/)
 [![Lint and Test](https://github.com/QualiSystemsLab/cloudshell-sandbox-reporter/actions/workflows/lint-test.yml/badge.svg)](https://github.com/QualiSystemsLab/cloudshell-sandbox-reporter/actions/workflows/lint-test.yml)
 [![PyPI version](https://badge.fury.io/py/cloudshell-sandbox-reporter.svg)](https://badge.fury.io/py/cloudshell-sandbox-reporter)
+[![Downloads](https://pepy.tech/badge/cloudshell-sandbox-reporter)](https://pepy.tech/project/cloudshell-sandbox-reporter)
 
 # Cloudshell Sandbox Reporter
 This project provides utility classes for formatting and sending html messages to the cloudshell sandbox console.

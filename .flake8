@@ -1,0 +1,26 @@
+[flake8]
+max-line-length = 127
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist
+max-complexity = 10
+ignore =
+        E203,
+        E265,
+        D100,
+        D101,
+        D102,
+        D103,
+        D104,
+        D105,
+        D106,
+        D107,
+        D200,
+        D205,
+        D210,
+        D400,
+        D401,
+        W503,
+        E203,
+        F403,
+        F405,
+        T001,
+        T201

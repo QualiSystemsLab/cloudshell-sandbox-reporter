@@ -1,34 +1,24 @@
+default_language_version:
+  python: python3.7
 repos:
   - repo: https://github.com/timothycrosley/isort
     rev: 5.4.2
     hooks:
       - id: isort
-        language_version: python3.7
-        args: [ --line-length=127 ]
+        args: []
   - repo: https://github.com/psf/black
     rev: 22.8.0
     hooks:
       - id: black
-        language_version: python3.7
-        args: [ --line-length=127 ]
+        args: []
         exclude: tests/
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.8.3
     hooks:
       - id: flake8
         exclude: tests/
-        additional_dependencies: [
-            flake8-docstrings,
-            flake8-builtins,
-            flake8-comprehensions,
-            flake8-print,
-            flake8-eradicate,
-        ]
-        language_version: python3.7
-        args: [
-            --max-line-length=127,
-            '--ignore=D100,D101,D102,D103,D104,D105,D106,D107,D200,D205,D210,D400,D401,W503,E203,F403,F405,T001'
-        ]
+        additional_dependencies: []
+        args: []
   # See https://stackoverflow.com/questions/61238318/pylint-and-pre-commit-hook-unable-to-import/61238571#61238571
   - repo: local
     hooks:
@@ -38,10 +28,4 @@ repos:
         entry: pylint
         language: system
         types: [ python ]
-        args: [
-            --max-line-length=127,
-            --max-public-methods=32,
-            --max-args=13,
-            '--disable=too-few-public-methods,logging-fstring-interpolation,too-many-instance-attributes,no-else-return,too-many-locals,no-self-use,duplicate-code,broad-except,logging-not-lazy,unspecified-encoding, unused-wildcard-import,missing-function-docstring,missing-module-docstring,import-error,wildcard-import,invalid-name,redefined-outer-name,no-name-in-module, arguments-differ, missing-class-docstring',
-            '--good-names=ip,rc,eval'
-        ]
+        args: []

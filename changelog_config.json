@@ -1,0 +1,41 @@
+{
+    "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Stats</summary>\n\nCommits: #{{COMMITS}}\nChanged Files: #{{CHANGED_FILES}}\n#{{RELEASE_DIFF}}</details>",
+    "categories": [
+      {
+        "title": "### Breaking Changes \uD83D\uDCA5",
+        "labels": [
+          "breaking-change"
+        ]
+      },
+      {
+        "title": "### New Features ✨",
+        "labels": [
+          "enhancement"
+        ]
+      },
+      {
+        "title": "### Fixes \uD83D\uDC1B",
+        "labels": [
+          "bug"
+        ]
+      },
+      {
+        "title": "### Tests Added ✅",
+        "labels": [
+          "tests"
+        ]
+      },
+      {
+        "title": "### Documentation \uD83D\uDCDD",
+        "labels": [
+          "documentation"
+        ]
+      },
+      {
+        "title": "### Other \uD83D\uDCAC",
+        "labels": [
+          "*"
+        ]
+      }
+    ]
+  }
